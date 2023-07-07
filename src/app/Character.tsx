@@ -1,4 +1,6 @@
 import style from './Character.module.css';
+import Animation from './Animation';
+import spritesheet from '../Sprout Lands - Sprites - premium pack/characters/Premium Charakter Spritesheet.png';
 
 type Props = {
   name: string;
@@ -11,7 +13,7 @@ type Props = {
 function Character({ name, position: { x, y } }: Props) {
   return (
     <h1 className={style.root} style={{ left: `${x}px`, top: `${y}px` }}>
-      {name}
+      <Animation file={spritesheet.src} width={48} height={48} />
     </h1>
   );
 }
