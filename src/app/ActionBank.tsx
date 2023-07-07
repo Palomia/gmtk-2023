@@ -7,6 +7,7 @@ const listActions = [
   'Defense',
   'Fake Attack',
   'Heavy Attack',
+  'Healing spell',
 ];
 const htmlActions = listActions.map((name) => (
   <li key={name}>
