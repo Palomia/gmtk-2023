@@ -1,5 +1,6 @@
 import stringToColour from './stringToColour';
 import styles from './ActionBank.module.css';
+import Action from './Action';
 
 const listActions = [
   'Move',
@@ -8,9 +9,9 @@ const listActions = [
   'Fake Attack',
   'Heavy Attack',
 ];
-const htmlActions = listActions.map((action) => (
-  <li key={action} style={{ backgroundColor: stringToColour(action) }}>
-    {action}
+const htmlActions = listActions.map((name) => (
+  <li key={name} style={{ backgroundColor: stringToColour(name) }}>
+    <Action name={name} />
   </li>
 ));
 
