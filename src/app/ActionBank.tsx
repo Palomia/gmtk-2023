@@ -1,4 +1,3 @@
-import stringToColour from './stringToColour';
 import styles from './ActionBank.module.css';
 import Action from './Action';
 
@@ -10,7 +9,7 @@ const listActions = [
   'Heavy Attack',
 ];
 const htmlActions = listActions.map((name) => (
-  <li key={name} style={{ backgroundColor: stringToColour(name) }}>
+  <li key={name}>
     <Action name={name} />
   </li>
 ));
