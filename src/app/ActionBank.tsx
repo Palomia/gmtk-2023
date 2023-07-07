@@ -1,4 +1,5 @@
 import stringToColour from './stringToColour';
+import styles from './ActionBank.module.css';
 
 const listActions = [
   'Move',
@@ -14,7 +15,7 @@ const htmlActions = listActions.map((action) => (
 ));
 
 function ActionBank() {
-  return <ul>{htmlActions}</ul>;
+  return <ul className={styles.root}>{htmlActions}</ul>;
 }
 
 export default ActionBank;
