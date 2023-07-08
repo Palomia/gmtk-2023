@@ -38,8 +38,13 @@ function Game() {
 
   return (
     <div className={styles.root}>
-      <Character name="Alice" position={enemyPosition} direction="left" />
-      <Character name="Bob" position={position} />
+      <Character
+        name="Alice"
+        position={enemyPosition}
+        direction="left"
+        health={0.7}
+      />
+      <Character name="Bob" position={position} health={0.4} />
     </div>
   );
 }
