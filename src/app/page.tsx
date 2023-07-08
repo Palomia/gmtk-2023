@@ -7,10 +7,9 @@ export default function Home() {
   //state
   const [sequence, setSequence] = useState([{ name: 'Move' }]);
   //comportement
-  const deleteAction = (name: string) => {
-    setSequence((sequence) =>
-      sequence.filter((action) => action.name !== name)
-    );
+  const deleteAction = (index: number) => {
+    // @ts-expect-error Typing is not up to date
+    setSequence((sequence) => sequence.toSpliced(index, 1));
   };
 
   const addAction = (name: string) => {

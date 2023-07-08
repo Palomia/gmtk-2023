@@ -5,22 +5,19 @@ import Action from './Action';
 type ActionType = { name: string };
 
 type Props = {
-  deleteAction: (name: string) => void;
+  deleteAction: (index: number) => void;
   sequence: ActionType[];
 };
 
 function ActionSequence({ deleteAction, sequence }: Props) {
   return (
     <ul className={styles.root}>
-      {sequence.map((action) => (
-        <li key={action.name}>
-          <Action
-            onClick={() => deleteAction(action.name)}
-            name={action.name}
-          />
+      {sequence.map((action, index) => (
+        <li key={index}>
+          <Action onClick={() => deleteAction(index)} name={action.name} />
         </li>
       ))}
-      <li key={'New'}>
+      <li>
         <Action name={'New'} />
       </li>
     </ul>
