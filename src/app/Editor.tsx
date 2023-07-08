@@ -5,11 +5,12 @@ import useSequence from './useSequence';
 
 type Props = {
   launchFight: () => void;
+  sequence: { name: string }[];
+  deleteAction: (index: number) => void;
+  addAction: (name: string) => void;
 };
 
-function Editor({ launchFight }: Props) {
-  const { sequence, deleteAction, addAction } = useSequence();
-
+function Editor({ launchFight, sequence, deleteAction, addAction }: Props) {
   return (
     <>
       <ActionSequence deleteAction={deleteAction} sequence={sequence} />{' '}
