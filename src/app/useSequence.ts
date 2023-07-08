@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { ActionType } from './types';
 
 function useSequence() {
-  const [sequence, setSequence] = useState([]);
+  const [sequence, setSequence] = useState<ActionType[]>([]);
 
   const deleteAction = (index: number) => {
     // @ts-expect-error Typing is not up to date
