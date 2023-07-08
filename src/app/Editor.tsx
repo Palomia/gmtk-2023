@@ -1,22 +1,11 @@
 'use client';
-import { useState } from 'react';
 import ActionBank from './ActionBank';
 import ActionSequence from './ActionSequence';
+import useSequence from './useSequence';
 
 function Editor() {
-  //state
-  const [sequence, setSequence] = useState([{ name: 'Move' }]);
-  //comportement
-  const deleteAction = (index: number) => {
-    // @ts-expect-error Typing is not up to date
-    setSequence((sequence) => sequence.toSpliced(index, 1));
-  };
+  const { sequence, deleteAction, addAction } = useSequence();
 
-  const addAction = (name: string) => {
-    setSequence((sequence) => [...sequence, { name }]);
-  };
-
-  //render
   return (
     <div>
       <ActionSequence deleteAction={deleteAction} sequence={sequence} />{' '}
