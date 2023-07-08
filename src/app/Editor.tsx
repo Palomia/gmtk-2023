@@ -13,7 +13,7 @@ type Props = {
 function Editor({ launchFight, sequence, deleteAction, addAction }: Props) {
   return (
     <>
-      <ActionSequence deleteAction={deleteAction} sequence={sequence} />{' '}
+      <ActionSequence onActionClick={deleteAction} sequence={sequence} />{' '}
       <ActionBank addAction={addAction} />
       <button onClick={launchFight}> Lauch Fight </button>
     </>

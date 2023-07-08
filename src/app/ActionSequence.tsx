@@ -4,16 +4,19 @@ import Action from './Action';
 import { ActionType } from './types';
 
 type Props = {
-  deleteAction: (index: number) => void;
+  onActionClick?: (index: number) => void;
   sequence: ActionType[];
 };
 
-function ActionSequence({ deleteAction, sequence }: Props) {
+function ActionSequence({ onActionClick, sequence }: Props) {
   return (
     <ul className={styles.root}>
       {sequence.map((action, index) => (
         <li key={index}>
-          <Action onClick={() => deleteAction(index)} name={action.name} />
+          <Action
+            onClick={onActionClick ? () => onActionClick(index) : undefined}
+            name={action.name}
+          />
         </li>
       ))}
       <li>
