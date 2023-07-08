@@ -1,6 +1,6 @@
 .root{
     display: grid;
     grid-template-columns: repeat(30, 16px);
-    position: relative;
+    position: absolute;
     /* justify-content: start; */
 }
