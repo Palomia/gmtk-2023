@@ -11,6 +11,8 @@ import type { GameState } from './types';
 
 function attack(gameState: GameState, tick: number): GameState {
   const [playerState, enemyState] = gameState;
+  const { position } = playerState;
+  const { position: enemyPosition } = enemyState;
 
   // Start Attacking
   if (playerState.startAttack === undefined)
@@ -20,7 +22,7 @@ function attack(gameState: GameState, tick: number): GameState {
     ];
 
   // Inflict Damage
-  if (tick - playerState.startAttack === 4)
+  if (tick - playerState.startAttack === 4 && distance(position, enemyPosition) < 12)
     return [
       playerState,
       { ...enemyState, health: Math.max(0, enemyState.health - 0.1) },
@@ -55,17 +57,20 @@ function move(gameState: GameState): GameState {
 
 function playerTurn(gameState: GameState, tick: number): GameState {
   const [playerState, enemyState] = gameState;
-  const { position } = playerState;
+  const { position, action } = playerState;
   const { position: enemyPosition } = enemyState;
 
-  return distance(position, enemyPosition) < 10
+  return action === 'attack' || distance(position, enemyPosition) < 10
     ? attack(gameState, tick)
     : move(gameState);
 }
 
+
 function enemyTurn(gameState: GameState): GameState {
   const [playerState, enemyState] = gameState;
   const { position } = enemyState;
+
+  const moove = playerState.action === "attack" ? 1 : 0;
 
   return [
     playerState,
@@ -73,7 +78,7 @@ function enemyTurn(gameState: GameState): GameState {
       ...enemyState,
       position: {
         ...position,
-        x: position.x + 0,
+        x: position.x + moove,
       },
     },
   ];
