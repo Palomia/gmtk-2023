@@ -1,17 +1,20 @@
 'use client';
 import { useState } from 'react';
-import stringToColour from './stringToColour';
+import styles from './ActionSequence.module.css';
+import Action from './Action';
 
 function ActionSequence() {
   //state
-  const [sequence, setSequence] = useState([{ name: 'move' }]);
+  const [sequence, setSequence] = useState([{ name: 'Move' }, { name: 'New' }]);
   //comportement
 
   //render
   return (
-    <ul>
+    <ul className={styles.root}>
       {sequence.map((action) => (
-        <li key={action.name}>{action.name} </li>
+        <li key={action.name}>
+          <Action name={action.name} />
+        </li>
       ))}
     </ul>
   );
