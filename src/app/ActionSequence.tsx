@@ -7,6 +7,11 @@ function ActionSequence() {
   //state
   const [sequence, setSequence] = useState([{ name: 'Move' }, { name: 'New' }]);
   //comportement
+  const handleDelete = (name: string) => {
+    setSequence((sequence) =>
+      sequence.filter((action) => action.name !== name)
+    );
+  };
 
   //render
   return (
@@ -14,6 +19,7 @@ function ActionSequence() {
       {sequence.map((action) => (
         <li key={action.name}>
           <Action name={action.name} />
+          <button onClick={() => handleDelete(action.name)}>X</button>
         </li>
       ))}
     </ul>
