@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { addMovement, getDirection, getMovementVector } from './movement';
 import useEffectOncePerTick from './useEffectOncePerTick';
 import Character from './Character';
 
@@ -14,13 +15,9 @@ function usePosition(enemyPosition: { x: number; y: number }) {
   const [direction, setDirection] = useState<Direction>('down');
 
   useEffectOncePerTick(() => {
-    const down = position.y > enemyPosition.y;
-    const right = position.x > enemyPosition.x;
-    setPosition((position) => ({
-      x: right ? position.x - 1 : position.x + 1,
-      y: down ? position.y - 1 : position.y + 1,
-    }));
-    setDirection(down ? 'up' : 'down');
+    const movementVector = getMovementVector(position, enemyPosition);
+    setPosition((position) => addMovement(position, movementVector));
+    setDirection(getDirection(movementVector));
     // Careful: This dependency array cannot be checked automatically
   }, [enemyPosition]);
 
