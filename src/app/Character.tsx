@@ -10,6 +10,7 @@ type Props = {
   };
   health: number;
   action: 'idle' | 'walk' | 'attack';
+  startAttack?: number;
 };
 
 declare module 'csstype' {
@@ -23,6 +24,7 @@ function Character({
   direction = 'down',
   health,
   action,
+  startAttack,
 }: Props) {
   return (
     <h1
@@ -33,6 +35,7 @@ function Character({
         animationType={action === 'attack' ? 'axe' : action}
         direction={direction}
         className={style.animation}
+        start={startAttack}
       />
     </h1>
   );

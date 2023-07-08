@@ -1,30 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-
-import useInterval from './useInterval';
 import Sprite from './Sprite';
+import useTick from './useTick';
 
 type Props = {
   file: string;
   width: number;
   height: number;
   frames: number;
-  speed?: number;
   line: number;
+  start?: number;
   className?: string;
 };
 
-function useAnimationFrame(frames: number, speed: number) {
-  const [frame, setFrame] = useState(0);
-
-  useInterval(() => setFrame((frame) => (frame + 1) % frames), speed);
-
-  return frame;
-}
-
-function Animation({ frames, speed = 100, ...props }: Props) {
-  const frame = useAnimationFrame(frames, speed);
+function Animation({ frames, start = 0, ...props }: Props) {
+  const tick = useTick();
+  const frame = (tick - start) % frames;
 
   return <Sprite {...props} column={frame} />;
 }

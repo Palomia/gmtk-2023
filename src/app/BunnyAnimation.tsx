@@ -54,11 +54,13 @@ type Props = {
   direction: Direction;
   animationType: AnimationType;
   className?: string;
+  start?: number;
 };
 
 export default function BunnyAnimation({
   animationType,
   direction,
+  start,
   className,
 }: Props) {
   return (
@@ -71,6 +73,7 @@ export default function BunnyAnimation({
         animationNumber(animationType) * 4 +
         directionNumber(animationType, direction)
       }
+      start={start}
       className={className}
     />
   );
