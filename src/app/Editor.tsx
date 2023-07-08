@@ -1,11 +1,11 @@
 'use client';
 import ActionBank from './ActionBank';
 import ActionSequence from './ActionSequence';
-import useSequence from './useSequence';
+import { ActionType } from './types';
 
 type Props = {
   launchFight: () => void;
-  sequence: { name: string }[];
+  sequence: ActionType[];
   deleteAction: (index: number) => void;
   addAction: (name: string) => void;
 };
