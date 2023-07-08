@@ -13,6 +13,7 @@ export default function Home() {
   //render
   return (
     <TickContextProvider>
+      <audio src={'editor.mp3'} autoPlay loop />
       {fighting ? (
         <GameInterface endFight={endFight} sequence={sequence} />
       ) : (
