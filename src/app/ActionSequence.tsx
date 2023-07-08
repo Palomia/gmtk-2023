@@ -8,9 +8,11 @@ function ActionSequence() {
   const [sequence, setSequence] = useState([{ name: 'Move' }, { name: 'New' }]);
   //comportement
   const handleDelete = (name: string) => {
-    setSequence((sequence) =>
-      sequence.filter((action) => action.name !== name)
-    );
+    if (name !== 'New') {
+      setSequence((sequence) =>
+        sequence.filter((action) => action.name !== name)
+      );
+    }
   };
 
   //render
