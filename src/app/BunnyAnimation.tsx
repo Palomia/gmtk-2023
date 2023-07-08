@@ -43,9 +43,14 @@ function directionNumber(direction: Direction) {
 type Props = {
   direction: Direction;
   animationType: AnimationType;
+  className?: string;
 };
 
-export default function BunnyAnimation({ animationType, direction }: Props) {
+export default function BunnyAnimation({
+  animationType,
+  direction,
+  className,
+}: Props) {
   return (
     <Animation
       file={spritesheet.src}
@@ -53,6 +58,7 @@ export default function BunnyAnimation({ animationType, direction }: Props) {
       height={48}
       frames={8}
       line={animationNumber(animationType) * 4 + directionNumber(direction)}
+      className={className}
     />
   );
 }

@@ -11,6 +11,7 @@ type Props = {
   frames: number;
   speed?: number;
   line?: number;
+  className?: string;
 };
 
 function useAnimationFrame(frames: number, speed: number) {
@@ -28,6 +29,7 @@ function Animation({
   frames,
   speed = 100,
   line = 0,
+  className,
 }: Props) {
   const frame = useAnimationFrame(frames, speed);
 
@@ -40,6 +42,7 @@ function Animation({
         backgroundPositionX: `${-frame * width}px`,
         backgroundPositionY: `${-line * height}px`,
       }}
+      className={className}
     />
   );
 }
