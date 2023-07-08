@@ -1,5 +1,5 @@
 import Animation from './Animation';
-import spritesheet from '../Sprout Lands - Sprites - premium pack/characters/Premium Charakter Spritesheet.png';
+import spritesheet from '../assets/Sprout Lands - Sprites - premium pack/characters/Premium Charakter Spritesheet.png';
 import type { Direction } from './types';
 
 type AnimationType =

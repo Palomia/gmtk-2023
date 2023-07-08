@@ -1,8 +1,8 @@
 import Sprite from './Sprite';
 import styles from './LayerMap.module.css';
 
-import spritesheetTallGrass from '../Sprout Lands - Sprites - premium pack/tilesets/Ground tiles/new tiles/Tall Grass hill tiles v.2.png';
-import spritesheetWater from '../Sprout Lands - Sprites - premium pack/tilesets/water frames/Water_2.png';
+import spritesheetTallGrass from '../assets/Sprout Lands - Sprites - premium pack/tilesets/Ground tiles/new tiles/Tall Grass hill tiles v.2.png';
+import spritesheetWater from '../assets/Sprout Lands - Sprites - premium pack/tilesets/water frames/Water_2.png';
 
 type TileProps = {
   id: number;
