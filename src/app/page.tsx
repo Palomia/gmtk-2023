@@ -2,6 +2,7 @@
 
 import Editor from './Editor';
 import GameInterface from './GameInterface';
+import { TickContextProvider } from './TickContext';
 import useFighting from './useFighting';
 import useSequence from './useSequence';
 
@@ -11,7 +12,7 @@ export default function Home() {
 
   //render
   return (
-    <>
+    <TickContextProvider>
       {fighting ? (
         <GameInterface endFight={endFight} sequence={sequence} />
       ) : (
@@ -22,6 +23,6 @@ export default function Home() {
           addAction={addAction}
         />
       )}
-    </>
+    </TickContextProvider>
   );
 }

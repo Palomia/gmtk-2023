@@ -1,12 +1,8 @@
-import { useState } from 'react';
-import useInterval from './useInterval';
+import { useContext } from 'react';
+import { TickContext } from './TickContext';
 
 function useTick() {
-  const [tick, setTick] = useState(0);
-
-  useInterval(() => setTick((tick) => tick + 1), 100);
-
-  return tick;
+  return useContext(TickContext);
 }
 
 export default useTick;
