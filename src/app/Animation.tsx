@@ -37,7 +37,7 @@ function Animation({
         width: `${width}px`,
         height: `${height}px`,
         backgroundImage: `url("${file}")`,
-        backgroundPositionX: `${frame * width}px`,
+        backgroundPositionX: `${-frame * width}px`,
         backgroundPositionY: `${-line * height}px`,
       }}
     />
