@@ -35,7 +35,11 @@ function useEnemyPosition() {
   return enemyPosition;
 }
 
-function Game() {
+type Props = {
+  endFight: () => void;
+};
+
+function Game({ endFight }: Props) {
   const enemyPosition = useEnemyPosition();
   const { position, direction } = usePosition(enemyPosition);
 
@@ -53,6 +57,7 @@ function Game() {
         direction={direction}
         health={0.4}
       />
+      <button onClick={endFight}> End Fight </button>
     </div>
   );
 }
