@@ -1,24 +1,16 @@
 import type { Position } from './types';
 
 function getDirection(movementVector: Position) {
-  if (movementVector.x !== 0) return movementVector.x > 0 ? 'right' : 'left';
-  if (movementVector.y !== 0) return movementVector.y > 0 ? 'down' : 'up';
-  return 'down';
-}
-
-function getMovement(
-  position: Position,
-  enemyPosition: Position,
-  property: 'x' | 'y'
-) {
-  if (position[property] === enemyPosition[property]) return 0;
-  return position[property] > enemyPosition[property] ? -1 : 1;
+  if (Math.abs(movementVector.x) > Math.abs(movementVector.y))
+    return movementVector.x > 0 ? 'right' : 'left';
+  return movementVector.y < 0 ? 'up' : 'down';
 }
 
 function getMovementVector(position: Position, enemyPosition: Position) {
+  const dist = distance(position, enemyPosition);
   return {
-    x: getMovement(position, enemyPosition, 'x'),
-    y: getMovement(position, enemyPosition, 'y'),
+    x: (enemyPosition.x - position.x) / dist,
+    y: (enemyPosition.y - position.y) / dist,
   };
 }
 
