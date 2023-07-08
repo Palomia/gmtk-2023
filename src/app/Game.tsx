@@ -1,51 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-
-import {
-  addMovement,
-  distance,
-  getDirection,
-  getMovementVector,
-} from './movement';
-import useEffectOncePerTick from './useEffectOncePerTick';
 import Character from './Character';
 
 import styles from './Game.module.css';
 
-import type { ActionType, Direction } from './types';
+import type { ActionType } from './types';
 import ActionSequence from './ActionSequence';
-
-function usePosition(enemyPosition: { x: number; y: number }) {
-  const [position, setPosition] = useState({ x: 0, y: 200 });
-  const [direction, setDirection] = useState<Direction>('down');
-  const [action, setAction] = useState<'idle' | 'walk' | 'attack'>('idle');
-
-  useEffectOncePerTick(() => {
-    if (distance(position, enemyPosition) < 10) {
-      setAction('attack');
-      return;
-    }
-    const movementVector = getMovementVector(position, enemyPosition);
-    setAction('walk');
-    setPosition((position) => addMovement(position, movementVector));
-    setDirection(getDirection(movementVector));
-    // Careful: This dependency array cannot be checked automatically
-  }, [enemyPosition]);
-
-  return { position, direction, action };
-}
-
-function useEnemyPosition() {
-  const [enemyPosition, setEnemyPosition] = useState({ x: 100, y: 100 });
-
-  useEffectOncePerTick(
-    () => setEnemyPosition((position) => ({ ...position, x: position.x + 1 })),
-    []
-  );
-
-  return enemyPosition;
-}
+import useGameState from './useGameState';
 
 type Props = {
   endFight: () => void;
@@ -53,8 +14,8 @@ type Props = {
 };
 
 function Game({ endFight, sequence }: Props) {
-  const enemyPosition = useEnemyPosition();
-  const { position, direction, action } = usePosition(enemyPosition);
+  const [{ position, direction, action }, { position: enemyPosition }] =
+    useGameState();
 
   return (
     <div className={styles.root}>
