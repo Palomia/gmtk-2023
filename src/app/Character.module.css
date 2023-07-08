@@ -1,0 +1,17 @@
+.root {
+  position: absolute;
+}
+
+.root::before {
+  content: '';
+  position: absolute;
+  background: lightpink;
+  width: 100%;
+  height: var(--health);
+  bottom: 0;
+}
+
+.animation {
+  position: relative;
+  z-index: 1;
+}
