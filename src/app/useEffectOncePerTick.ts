@@ -4,14 +4,14 @@ import useTick from './useTick';
 /**
  * @param deps **WARNING**: Cannot be checked automatically
  */
-function useEffectOncePerTick(effect: () => void, deps: unknown[]) {
+function useEffectOncePerTick(effect: (tick: number) => void, deps: unknown[]) {
   const tick = useTick();
   const lastHandledTick = useRef(-1);
 
   useEffect(() => {
     if (lastHandledTick.current === tick) return;
     lastHandledTick.current = tick;
-    effect();
+    effect(tick);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [effect, tick, ...deps]);
 }

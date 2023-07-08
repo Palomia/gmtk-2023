@@ -11,6 +11,7 @@ type CharacterType = {
   position: Position;
   direction: Direction;
   action: 'idle' | 'walk' | 'attack';
+  startAttack?: number;
   health: number;
 };
 

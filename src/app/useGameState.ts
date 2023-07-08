@@ -25,7 +25,10 @@ function useGameState() {
     initialEnemyState,
   ]);
 
-  useEffectOncePerTick(() => setGameState(updateGameState), []);
+  useEffectOncePerTick(
+    (tick) => setGameState((gameState) => updateGameState(gameState, tick)),
+    []
+  );
 
   return gameState;
 }

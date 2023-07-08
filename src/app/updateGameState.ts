@@ -1,3 +1,5 @@
+// This file is business logic only. No React Code.
+
 import {
   addMovement,
   distance,
@@ -7,19 +9,38 @@ import {
 
 import type { GameState } from './types';
 
-function playerTurn(gameState: GameState): GameState {
+function attack(gameState: GameState, tick: number): GameState {
+  const [playerState, enemyState] = gameState;
+
+  // Start Attacking
+  if (playerState.startAttack === undefined)
+    return [
+      { ...playerState, action: 'attack', startAttack: tick },
+      enemyState,
+    ];
+
+  // Inflict Damage
+  if (tick - playerState.startAttack === 4)
+    return [
+      playerState,
+      { ...enemyState, health: Math.max(0, enemyState.health - 0.1) },
+    ];
+
+  // End of recovery
+  if (tick - playerState.startAttack === 8)
+    return [
+      { ...playerState, action: 'idle', startAttack: undefined },
+      enemyState,
+    ];
+
+  // Waiting
+  return gameState;
+}
+
+function move(gameState: GameState): GameState {
   const [playerState, enemyState] = gameState;
   const { position } = playerState;
   const { position: enemyPosition } = enemyState;
-
-  if (distance(position, enemyPosition) < 10)
-    return [
-      { ...playerState, action: 'attack' },
-      {
-        ...enemyState,
-        health: Math.max(enemyState.health - 0.1, 0),
-      },
-    ];
 
   const movementVector = getMovementVector(position, enemyPosition);
   const action = 'walk';
@@ -30,6 +51,16 @@ function playerTurn(gameState: GameState): GameState {
     { ...playerState, position: newPosition, direction, action },
     enemyState,
   ];
+}
+
+function playerTurn(gameState: GameState, tick: number): GameState {
+  const [playerState, enemyState] = gameState;
+  const { position } = playerState;
+  const { position: enemyPosition } = enemyState;
+
+  return distance(position, enemyPosition) < 10
+    ? attack(gameState, tick)
+    : move(gameState);
 }
 
 function enemyTurn(gameState: GameState): GameState {
@@ -47,8 +78,8 @@ function enemyTurn(gameState: GameState): GameState {
     },
   ];
 }
-function updateGameState(gameState: GameState): GameState {
-  const gameState2 = playerTurn(gameState);
+function updateGameState(gameState: GameState, tick: number): GameState {
+  const gameState2 = playerTurn(gameState, tick);
   const gameState3 = enemyTurn(gameState2);
   return gameState3;
 }
