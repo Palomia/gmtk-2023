@@ -1,5 +1,6 @@
 'use client';
 
+import BackgroundMap from './BackgroundMap';
 import Character from './Character';
 
 import styles from './Game.module.css';
@@ -11,6 +12,7 @@ function Game() {
 
   return (
     <div className={styles.root}>
+      <BackgroundMap />
       <Character {...enemy} />
       <Character {...player} />
     </div>
