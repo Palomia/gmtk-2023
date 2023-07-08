@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function useSequence() {
-  const [sequence, setSequence] = useState([{ name: 'Move' }]);
+  const [sequence, setSequence] = useState([]);
 
   const deleteAction = (index: number) => {
     // @ts-expect-error Typing is not up to date

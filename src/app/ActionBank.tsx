@@ -3,14 +3,7 @@
 import styles from './ActionBank.module.css';
 import Action from './Action';
 
-const listActions = [
-  'Move',
-  'Attack',
-  'Defense',
-  'Fake Attack',
-  'Heavy Attack',
-  'Healing spell',
-];
+const listActions = ['MoveToward', 'Attack', 'Throw'];
 
 type Props = {
   addAction: (name: string) => void;

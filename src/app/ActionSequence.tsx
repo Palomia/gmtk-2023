@@ -19,9 +19,6 @@ function ActionSequence({ onActionClick, sequence }: Props) {
           />
         </li>
       ))}
-      <li>
-        <Action name={'New'} />
-      </li>
     </ul>
   );
 }
