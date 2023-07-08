@@ -7,18 +7,24 @@ import Character from './Character';
 
 import styles from './Game.module.css';
 
+import type { Direction } from './types';
+
 function usePosition(enemyPosition: { x: number; y: number }) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 200 });
+  const [direction, setDirection] = useState<Direction>('down');
 
   useEffectOncePerTick(() => {
+    const down = position.y > enemyPosition.y;
+    const right = position.x > enemyPosition.x;
     setPosition((position) => ({
-      x: position.x > enemyPosition.x ? position.x - 1 : position.x + 1,
-      y: position.y > enemyPosition.y ? position.y - 1 : position.y + 1,
+      x: right ? position.x - 1 : position.x + 1,
+      y: down ? position.y - 1 : position.y + 1,
     }));
+    setDirection(down ? 'up' : 'down');
     // Careful: This dependency array cannot be checked automatically
   }, [enemyPosition]);
 
-  return position;
+  return { position, direction };
 }
 
 function useEnemyPosition() {
@@ -34,7 +40,7 @@ function useEnemyPosition() {
 
 function Game() {
   const enemyPosition = useEnemyPosition();
-  const position = usePosition(enemyPosition);
+  const { position, direction } = usePosition(enemyPosition);
 
   return (
     <div className={styles.root}>
@@ -44,7 +50,12 @@ function Game() {
         direction="left"
         health={0.7}
       />
-      <Character name="Bob" position={position} health={0.4} />
+      <Character
+        name="Bob"
+        position={position}
+        direction={direction}
+        health={0.4}
+      />
     </div>
   );
 }
