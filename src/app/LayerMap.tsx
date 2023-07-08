@@ -8,10 +8,15 @@ type TileProps = {
   id: number;
 };
 
+function getFile(id: number) {
+  if (id === 0) return undefined;
+  return id > 48 ? spritesheetWater.src : spritesheetTallGrass.src;
+}
+
 function Tile({ id }: TileProps) {
   return (
     <Sprite
-      file={id > 48 ? spritesheetWater.src : spritesheetTallGrass.src}
+      file={getFile(id)}
       width={16}
       height={16}
       line={id > 48 ? 1 : Math.floor((id - 1) / 6)}
