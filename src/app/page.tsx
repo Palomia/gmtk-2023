@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       {fighting ? (
-        <Game endFight={endFight} />
+        <Game endFight={endFight} sequence={sequence} />
       ) : (
         <Editor
           launchFight={launchFight}

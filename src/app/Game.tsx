@@ -8,7 +8,8 @@ import Character from './Character';
 
 import styles from './Game.module.css';
 
-import type { Direction } from './types';
+import type { ActionType, Direction } from './types';
+import ActionSequence from './ActionSequence';
 
 function usePosition(enemyPosition: { x: number; y: number }) {
   const [position, setPosition] = useState({ x: 0, y: 200 });
@@ -37,14 +38,16 @@ function useEnemyPosition() {
 
 type Props = {
   endFight: () => void;
+  sequence: ActionType[];
 };
 
-function Game({ endFight }: Props) {
+function Game({ endFight, sequence }: Props) {
   const enemyPosition = useEnemyPosition();
   const { position, direction } = usePosition(enemyPosition);
 
   return (
     <div className={styles.root}>
+      <ActionSequence sequence={sequence} />{' '}
       <Character
         name="Alice"
         position={enemyPosition}
