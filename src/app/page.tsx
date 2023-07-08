@@ -5,6 +5,7 @@ import GameInterface from './GameInterface';
 import { TickContextProvider } from './TickContext';
 import useFighting from './useFighting';
 import useSequence from './useSequence';
+import Music from './Music';
 
 export default function Home() {
   const { fighting, launchFight, endFight } = useFighting();
@@ -13,7 +14,7 @@ export default function Home() {
   //render
   return (
     <TickContextProvider>
-      <audio src={'editor.mp3'} autoPlay loop />
+      <Music />
       {fighting ? (
         <GameInterface endFight={endFight} sequence={sequence} />
       ) : (
