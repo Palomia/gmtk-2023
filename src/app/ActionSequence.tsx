@@ -18,8 +18,10 @@ function ActionSequence() {
     <ul className={styles.root}>
       {sequence.map((action) => (
         <li key={action.name}>
-          <Action name={action.name} />
-          <button onClick={() => handleDelete(action.name)}>X</button>
+          <Action
+            onClick={() => handleDelete(action.name)}
+            name={action.name}
+          />
         </li>
       ))}
     </ul>
