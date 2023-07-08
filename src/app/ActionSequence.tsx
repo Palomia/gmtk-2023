@@ -1,29 +1,21 @@
 'use client';
-import { useState } from 'react';
 import styles from './ActionSequence.module.css';
 import Action from './Action';
 
-function ActionSequence() {
-  //state
-  const [sequence, setSequence] = useState([{ name: 'Move' }]);
-  //comportement
-  const handleDelete = (name: string) => {
-    setSequence((sequence) =>
-      sequence.filter((action) => action.name !== name)
-    );
-  };
+type ActionType = { name: string };
 
-  const handleAdd = (name: string) => {
-    setSequence((sequence) => [...sequence, { name }]);
-  };
+type Props = {
+  deleteAction: (name: string) => void;
+  sequence: ActionType[];
+};
 
-  //render
+function ActionSequence({ deleteAction, sequence }: Props) {
   return (
     <ul className={styles.root}>
       {sequence.map((action) => (
         <li key={action.name}>
           <Action
-            onClick={() => handleDelete(action.name)}
+            onClick={() => deleteAction(action.name)}
             name={action.name}
           />
         </li>
