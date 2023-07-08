@@ -22,7 +22,10 @@ function attack(gameState: GameState, tick: number): GameState {
     ];
 
   // Inflict Damage
-  if (tick - playerState.startAttack === 4 && distance(position, enemyPosition) < 12)
+  if (
+    tick - playerState.startAttack === 4 &&
+    distance(position, enemyPosition) < 12
+  )
     return [
       playerState,
       { ...enemyState, health: Math.max(0, enemyState.health - 0.1) },
@@ -65,12 +68,11 @@ function playerTurn(gameState: GameState, tick: number): GameState {
     : move(gameState);
 }
 
-
 function enemyTurn(gameState: GameState): GameState {
   const [playerState, enemyState] = gameState;
   const { position } = enemyState;
 
-  const moove = playerState.action === "attack" ? 1 : 0;
+  const moove = playerState.action === 'attack' ? 1 : 0;
 
   return [
     playerState,
