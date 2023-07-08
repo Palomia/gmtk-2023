@@ -72,7 +72,7 @@ function enemyTurn(gameState: GameState): GameState {
   const [playerState, enemyState] = gameState;
   const { position } = enemyState;
 
-  const moove = playerState.action === 'attack' ? 1 : 0;
+  const move = playerState.action === 'attack' ? 1 : 0;
 
   return [
     playerState,
@@ -80,7 +80,7 @@ function enemyTurn(gameState: GameState): GameState {
       ...enemyState,
       position: {
         ...position,
-        x: position.x + moove,
+        x: position.x + move,
       },
     },
   ];
