@@ -7,6 +7,13 @@ type Position = {
 
 type ActionType = { name: string };
 
-export type { Direction, Position, ActionType };
+type CharacterType = {
+  position: Position;
+  direction: Direction;
+  action: 'idle' | 'walk' | 'attack';
+  health: number;
+};
 
+type GameState = [CharacterType, CharacterType];
 
+export type { Direction, Position, ActionType, CharacterType, GameState };
