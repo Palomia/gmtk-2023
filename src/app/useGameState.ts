@@ -14,18 +14,21 @@ const initialPlayerState = {
   position: { x: 0, y: 200 },
   direction: 'down',
   action: 'idle',
+  health: 1,
 } as const;
 
 const initialEnemyState = {
   position: { x: 100, y: 100 },
   direction: 'down',
   action: 'idle',
+  health: 1,
 } as const;
 
 type CharacterType = {
   position: Position;
   direction: Direction;
   action: 'idle' | 'walk' | 'attack';
+  health: number;
 };
 type GameState = [CharacterType, CharacterType];
 

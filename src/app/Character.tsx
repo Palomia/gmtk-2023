@@ -3,7 +3,6 @@ import BunnyAnimation from './BunnyAnimation';
 import type { Direction } from './types';
 
 type Props = {
-  name: string;
   direction?: Direction;
   position: {
     x: number;
@@ -20,7 +19,6 @@ declare module 'csstype' {
 }
 
 function Character({
-  name,
   position: { x, y },
   direction = 'down',
   health,
