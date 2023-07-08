@@ -13,7 +13,13 @@ function playerTurn(gameState: GameState): GameState {
   const { position: enemyPosition } = enemyState;
 
   if (distance(position, enemyPosition) < 10)
-    return [{ ...playerState, action: 'attack' }, enemyState];
+    return [
+      { ...playerState, action: 'attack' },
+      {
+        ...enemyState,
+        health: Math.max(enemyState.health - 0.1, 0),
+      },
+    ];
 
   const movementVector = getMovementVector(position, enemyPosition);
   const action = 'walk';
@@ -36,7 +42,7 @@ function enemyTurn(gameState: GameState): GameState {
       ...enemyState,
       position: {
         ...position,
-        x: position.x + 1,
+        x: position.x + 0,
       },
     },
   ];
