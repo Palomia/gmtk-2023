@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import useInterval from './useInterval';
+import Sprite from './Sprite';
 
 type Props = {
   file: string;
@@ -10,7 +11,7 @@ type Props = {
   height: number;
   frames: number;
   speed?: number;
-  line?: number;
+  line: number;
   className?: string;
 };
 
@@ -22,29 +23,10 @@ function useAnimationFrame(frames: number, speed: number) {
   return frame;
 }
 
-function Animation({
-  file,
-  width,
-  height,
-  frames,
-  speed = 100,
-  line = 0,
-  className,
-}: Props) {
+function Animation({ frames, speed = 100, ...props }: Props) {
   const frame = useAnimationFrame(frames, speed);
 
-  return (
-    <div
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-        backgroundImage: `url("${file}")`,
-        backgroundPositionX: `${-frame * width}px`,
-        backgroundPositionY: `${-line * height}px`,
-      }}
-      className={className}
-    />
-  );
+  return <Sprite {...props} column={frame} />;
 }
 
 export default Animation;
