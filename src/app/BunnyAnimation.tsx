@@ -27,16 +27,26 @@ function animationNumber(animationType: AnimationType) {
   }
 }
 
-function directionNumber(direction: Direction) {
+function invertedAnimation(animationType: AnimationType) {
+  switch (animationType) {
+    case 'walk':
+    case 'run':
+      return true;
+    default:
+      return false;
+  }
+}
+
+function directionNumber(animationType: AnimationType, direction: Direction) {
   switch (direction) {
     case 'down':
       return 0;
     case 'up':
       return 1;
     case 'left':
-      return 2;
+      return invertedAnimation(animationType) ? 3 : 2;
     case 'right':
-      return 3;
+      return invertedAnimation(animationType) ? 2 : 3;
   }
 }
 
@@ -57,7 +67,10 @@ export default function BunnyAnimation({
       width={48}
       height={48}
       frames={8}
-      line={animationNumber(animationType) * 4 + directionNumber(direction)}
+      line={
+        animationNumber(animationType) * 4 +
+        directionNumber(animationType, direction)
+      }
       className={className}
     />
   );

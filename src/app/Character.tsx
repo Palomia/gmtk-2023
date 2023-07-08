@@ -10,6 +10,7 @@ type Props = {
     y: number;
   };
   health: number;
+  action: 'idle' | 'walk' | 'attack';
 };
 
 declare module 'csstype' {
@@ -23,6 +24,7 @@ function Character({
   position: { x, y },
   direction = 'down',
   health,
+  action,
 }: Props) {
   return (
     <h1
@@ -30,7 +32,7 @@ function Character({
       style={{ left: `${x}px`, top: `${y}px`, '--health': `${health * 100}%` }}
     >
       <BunnyAnimation
-        animationType="watering can"
+        animationType={action === 'attack' ? 'axe' : action}
         direction={direction}
         className={style.animation}
       />

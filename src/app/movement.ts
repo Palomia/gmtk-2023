@@ -29,4 +29,11 @@ function addMovement(position: Position, movement: Position) {
   };
 }
 
-export { getDirection, getMovementVector, addMovement };
+function distance(position: Position, enemyPosition: Position) {
+  return Math.sqrt(
+    Math.pow(position.x - enemyPosition.x, 2) +
+      Math.pow(position.y - enemyPosition.y, 2)
+  );
+}
+
+export { getDirection, getMovementVector, addMovement, distance };
