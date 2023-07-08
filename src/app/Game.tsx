@@ -4,22 +4,14 @@ import Character from './Character';
 
 import styles from './Game.module.css';
 
-import type { ActionType } from './types';
-import ActionSequence from './ActionSequence';
 import useGameState from './useGameState';
 
-type Props = {
-  endFight: () => void;
-  sequence: ActionType[];
-};
-
-function Game({ endFight, sequence }: Props) {
+function Game() {
   const [{ position, direction, action }, { position: enemyPosition }] =
     useGameState();
 
   return (
     <div className={styles.root}>
-      <ActionSequence sequence={sequence} />{' '}
       <Character
         name="Alice"
         position={enemyPosition}
@@ -34,7 +26,6 @@ function Game({ endFight, sequence }: Props) {
         action={action}
         health={0.4}
       />
-      <button onClick={endFight}> End Fight </button>
     </div>
   );
 }

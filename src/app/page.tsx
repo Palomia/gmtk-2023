@@ -1,7 +1,7 @@
 'use client';
 
 import Editor from './Editor';
-import Game from './Game';
+import GameInterface from './GameInterface';
 import useFighting from './useFighting';
 import useSequence from './useSequence';
 
@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       {fighting ? (
-        <Game endFight={endFight} sequence={sequence} />
+        <GameInterface endFight={endFight} sequence={sequence} />
       ) : (
         <Editor
           launchFight={launchFight}
