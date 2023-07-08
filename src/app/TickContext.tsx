@@ -7,7 +7,7 @@ const TickContext = createContext(-1);
 function TickContextProvider({ children }: { children: React.ReactNode }) {
   const [tick, setTick] = useState(0);
 
-  useInterval(() => setTick((tick) => tick + 1), 100);
+  useInterval(() => setTick((tick) => tick + 1), 30);
 
   return <TickContext.Provider value={tick}>{children}</TickContext.Provider>;
 }
