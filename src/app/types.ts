@@ -5,4 +5,8 @@ type Position = {
   y: number;
 };
 
-export type { Direction, Position };
+type ActionType = { name: string };
+
+export type { Direction, Position, ActionType };
+
+

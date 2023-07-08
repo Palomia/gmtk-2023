@@ -1,8 +1,7 @@
 'use client';
 import styles from './ActionSequence.module.css';
 import Action from './Action';
-
-type ActionType = { name: string };
+import { ActionType } from './types';
 
 type Props = {
   deleteAction: (index: number) => void;
