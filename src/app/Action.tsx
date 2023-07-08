@@ -3,7 +3,7 @@ import stringToColour from './stringToColour';
 
 type Props = {
   name: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 function Action({ name, onClick }: Props) {

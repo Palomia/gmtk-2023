@@ -5,14 +5,16 @@ import Action from './Action';
 
 function ActionSequence() {
   //state
-  const [sequence, setSequence] = useState([{ name: 'Move' }, { name: 'New' }]);
+  const [sequence, setSequence] = useState([{ name: 'Move' }]);
   //comportement
   const handleDelete = (name: string) => {
-    if (name !== 'New') {
-      setSequence((sequence) =>
-        sequence.filter((action) => action.name !== name)
-      );
-    }
+    setSequence((sequence) =>
+      sequence.filter((action) => action.name !== name)
+    );
+  };
+
+  const handleAdd = (name: string) => {
+    setSequence((sequence) => [...sequence, { name }]);
   };
 
   //render
@@ -26,6 +28,9 @@ function ActionSequence() {
           />
         </li>
       ))}
+      <li key={'New'}>
+        <Action name={'New'} />
+      </li>
     </ul>
   );
 }
